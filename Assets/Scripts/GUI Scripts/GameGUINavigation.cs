@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections;
 using System.Text.RegularExpressions;
 using UnityEngine.UI;
+using System.IO;
 
 public class GameGUINavigation : MonoBehaviour {
 
@@ -34,6 +35,7 @@ public class GameGUINavigation : MonoBehaviour {
 	void Start () 
 	{
 		StartCoroutine("ShowReadyScreen", initialDelay);
+		ScoreCanvas.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -147,8 +149,21 @@ public class GameGUINavigation : MonoBehaviour {
 	    GameManager.DestroySelf();
 	}
 
+	// Tambah Andi
+	void CreateText(string nama, int scoring){
+		// Path of the file.
+		string path = Application.dataPath + "/Log.txt";
+		// Create file if it doesn't exist.
+		if(!File.Exists(path)){
+			File.WriteAllText(path, nama + "-" + scoring + "\n");
+		} else {
+			File.AppendAllText(path, nama + "-" + scoring + "\n");
+		}
+	}
+
     IEnumerator AddScore(string name, int score)
     {
+		CreateText(name,score);
         string privateKey = "pKey";
         string AddScoreURL = "http://ilbeyli.byethost18.com/addscore.php?";
         string hash = Md5Sum(name + score + privateKey);
