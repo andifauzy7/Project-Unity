@@ -163,7 +163,12 @@ public class GameGUINavigation : MonoBehaviour {
 
     IEnumerator AddScore(string name, int score)
     {
+		
+		
 		CreateText(name,score);
+		ScoreCanvas.enabled = false;
+		yield return new WaitForSeconds(0);
+		/*
         string privateKey = "pKey";
         string AddScoreURL = "http://ilbeyli.byethost18.com/addscore.php?";
         string hash = Md5Sum(name + score + privateKey);
@@ -183,14 +188,14 @@ public class GameGUINavigation : MonoBehaviour {
             GameManager.Level = 0;
 
             Application.LoadLevel("scores");
-            Time.timeScale = 1.0f;
+            Time.timeScale = 1.0f; 
         }
         else
         {
             Debug.Log("Error posting results: " + ScorePost.error);
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(2);*/
     }
 
     public string Md5Sum(string strToEncrypt)
