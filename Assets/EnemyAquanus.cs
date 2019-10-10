@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemyAquanus : MonoBehaviour
 {
 
-    public int health = 100;
+    public int enemyhealth = 100;
     public GameObject deathEffect;
 
     public void TakeDamage (int damage)
     {
-        health -= damage;
-        if (health <= 0)
+        enemyhealth -= damage;
+        if (enemyhealth <= 0)
             Die();
     }
 
